@@ -1,124 +1,119 @@
 # 🚀 Guia de Deploy - CRX Capital
 
-## Opções de Deploy Recomendadas
+## Opções de Deploy
 
-### 1. Vercel (Recomendado - Mais Fácil)
+### 1. GitHub Pages (Automático)
 
-1. Instale a CLI da Vercel:
+O projeto já está configurado com GitHub Actions para deploy automático!
+
+**Como funciona:**
+1. Faça commit e push para a branch `main`
+2. O GitHub Actions automaticamente:
+   - Instala dependências
+   - Faz o build
+   - Publica na branch `gh-pages`
+3. O site estará disponível em: `https://lucassomokovitz.github.io/crx-capital/`
+
+**Para ativar:**
+1. Vá em **Settings** > **Pages** no repositório
+2. Selecione **Source**: `Deploy from a branch`
+3. Selecione **Branch**: `gh-pages` e pasta `/ (root)`
+4. Salve
+
+### 2. GitHub Pages (Manual)
+
+Se preferir fazer manualmente:
+
+```bash
+npm run build
+npx gh-pages -d dist
+```
+
+### 3. Vercel (Recomendado - Mais Fácil)
+
+1. Instale a CLI:
 ```bash
 npm i -g vercel
 ```
 
-2. No diretório do projeto, execute:
+2. No diretório do projeto:
 ```bash
 vercel
 ```
 
 3. Siga as instruções no terminal
-4. Pronto! Seu site estará no ar em segundos
+4. Pronto! Seu site estará no ar
 
 **Vantagens:**
-- Deploy automático a cada push no GitHub
+- Deploy automático a cada push
 - SSL gratuito
 - CDN global
 - Domínio personalizado gratuito
 
-### 2. Netlify
+### 4. Netlify
 
-1. Instale a CLI do Netlify:
+1. Instale a CLI:
 ```bash
 npm i -g netlify-cli
 ```
 
-2. Build do projeto:
+2. Build e deploy:
 ```bash
 npm run build
-```
-
-3. Deploy:
-```bash
 netlify deploy --prod --dir=dist
 ```
 
 **Vantagens:**
-- Formulários gratuitos (pode usar Netlify Forms)
+- Formulários gratuitos
 - SSL automático
 - Deploy contínuo
 
-### 3. GitHub Pages
+### 5. Hospedagem Tradicional (cPanel, FTP, etc)
 
-1. Instale o plugin do Vite:
+1. Faça o build:
 ```bash
-npm install -D gh-pages
+npm run build
 ```
 
-2. Adicione no `package.json`:
-```json
-{
-  "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
-  }
-}
-```
-
-3. Configure o `vite.config.ts`:
+2. **IMPORTANTE**: Antes de fazer o build, edite `vite.config.ts`:
 ```typescript
-export default defineConfig({
-  base: '/nome-do-repositorio/', // Se não for raiz
-  // ... resto da config
-})
+base: '/',  // Mude de '/crx-capital/' para '/'
 ```
 
-4. Deploy:
+3. Faça o build novamente:
 ```bash
-npm run deploy
+npm run build
 ```
 
-## Configurações Importantes
+4. Envie o conteúdo da pasta `dist/` para o servidor via FTP/cPanel
 
-### Variáveis de Ambiente (se necessário)
+## Configuração de Base Path
 
-Crie um arquivo `.env`:
-```
-VITE_API_URL=https://api.exemplo.com
-VITE_EMAILJS_SERVICE_ID=seu_service_id
-VITE_EMAILJS_TEMPLATE_ID=seu_template_id
-VITE_EMAILJS_PUBLIC_KEY=sua_public_key
+### Para GitHub Pages:
+```typescript
+// vite.config.ts
+base: '/crx-capital/',
 ```
 
-### Otimizações de Build
-
-O `vite.config.ts` já está configurado para:
-- Minificação com Terser
-- Remoção de console.log em produção
-- Code splitting automático
-- Build otimizado para produção
+### Para Domínio Próprio / Hospedagem Normal:
+```typescript
+// vite.config.ts
+base: '/',
+```
 
 ## Checklist Pré-Deploy
 
-- [ ] Adicionar imagens reais em `public/images/`
-- [ ] Configurar domínio personalizado
-- [ ] Integrar formulário com serviço de email
-- [ ] Adicionar Google Analytics (se necessário)
-- [ ] Testar em diferentes dispositivos
+- [ ] Testar build local: `npm run build && npm run preview`
+- [ ] Verificar se todas as imagens estão carregando
+- [ ] Testar em diferentes navegadores
 - [ ] Verificar performance no PageSpeed Insights
+- [ ] Configurar domínio personalizado (se necessário)
 - [ ] Configurar SSL/HTTPS
-- [ ] Adicionar política de privacidade (LGPD)
-- [ ] Configurar aviso de cookies (LGPD)
-
-## Performance
-
-Após o deploy, verifique:
-- [Google PageSpeed Insights](https://pagespeed.web.dev/)
-- [GTmetrix](https://gtmetrix.com/)
-- [WebPageTest](https://www.webpagetest.org/)
-
-Meta: Score > 90 em todas as métricas
+- [ ] Adicionar Google Analytics (opcional)
 
 ## Suporte
 
 Para problemas no deploy, consulte:
 - [Documentação Vite](https://vite.dev/guide/static-deploy.html)
+- [Documentação GitHub Pages](https://docs.github.com/en/pages)
 - [Documentação Vercel](https://vercel.com/docs)
-- [Documentação Netlify](https://docs.netlify.com/)
