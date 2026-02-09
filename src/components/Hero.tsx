@@ -4,7 +4,7 @@ const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   
   const slides = [
-    '/images/slide1.png',
+    `${import.meta.env.BASE_URL}images/slide1.png`,
     // Adicione mais slides aqui quando tiver
   ];
 

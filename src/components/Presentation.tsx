@@ -5,7 +5,7 @@ const Presentation = () => {
     const n = i + 1;
     return {
       id: n,
-      src: `/Apresentação/Slide${n}.PNG`,
+      src: `${import.meta.env.BASE_URL}Apresentação/Slide${n}.PNG`,
       alt: `Slide ${n}`,
     };
   });

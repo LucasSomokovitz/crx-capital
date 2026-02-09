@@ -39,7 +39,7 @@ const Header = () => {
               className="flex items-center"
             >
               <img
-                src="/images/logocrxcapital.png"
+                src={`${import.meta.env.BASE_URL}images/logocrxcapital.png`}
                 alt="CRX Capital"
                 className="h-[3.6rem] md:h-[4.2rem] w-auto"
               />

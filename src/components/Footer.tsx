@@ -6,7 +6,7 @@ const Footer = () => {
           {/* Logo - 25% maior e centralizada verticalmente */}
           <div className="flex items-center justify-center h-full">
             <img
-              src="/images/logocrxcapitalbranco.png"
+              src={`${import.meta.env.BASE_URL}images/logocrxcapitalbranco.png`}
               alt="CRX Capital"
               className="h-[3.125rem] w-auto"
             />
