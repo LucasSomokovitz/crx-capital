@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #F5F5F5; /* ice */
+    color: #333333; /* graphite */
+    font-family: 'Inter', 'Montserrat', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+}
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+}
+}
+
+/* Micro-interações e animações suaves */
+@layer components {
+  .btn-primary {
+    @apply bg-lime text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:bg-lime-light hover:shadow-lg hover:scale-105 active:scale-95;
+}
+
+  .btn-secondary {
+    @apply bg-white text-navy px-8 py-4 rounded-lg font-semibold text-lg border-2 border-navy transition-all duration-300 hover:bg-navy hover:text-white hover:shadow-lg;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-2;
+}
+  
+  .section-padding {
+    @apply py-20 px-4 md:px-8 lg:px-16;
+}
+}
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Customização da barra de rolagem */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #F5F5F5; /* ice */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #000080; /* navy */
+  border-radius: 9999px;
+  }
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #000066; /* navy-dark */
+}
