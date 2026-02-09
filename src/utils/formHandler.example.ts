@@ -9,7 +9,7 @@
  */
 
 // Exemplo com EmailJS
-export const sendEmailWithEmailJS = async (formData: {
+export const sendEmailWithEmailJS = async (_formData: {
   nome: string;
   email: string;
   telefone: string;
@@ -43,7 +43,7 @@ export const sendEmailWithEmailJS = async (formData: {
 };
 
 // Exemplo com Formspree
-export const sendEmailWithFormspree = async (formData: {
+export const sendEmailWithFormspree = async (_formData: {
   nome: string;
   email: string;
   telefone: string;
