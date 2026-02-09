@@ -4,10 +4,12 @@ import path from 'path'
 
 // https://vite.dev/config/
 // Para GitHub Pages, use base: '/crx-capital/'
-// Para hospedagem normal (domínio próprio), use base: '/'
+// Para hospedagem normal (Netlify, Vercel, etc.), use base: '/'
+// O base path é configurado via variável de ambiente VITE_BASE_PATH
+// Se não definida, usa '/' por padrão (funciona no Netlify)
 export default defineConfig({
   plugins: [react()],
-  base: '/crx-capital/',
+  base: process.env.VITE_BASE_PATH || '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
